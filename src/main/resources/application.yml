@@ -1,0 +1,46 @@
+server.port: 8083
+
+spring.datasource.url: jdbc:postgresql://${PSQL_DB_HOST}:${PSQL_DB_PORT}/${PSQL_DB_DS}
+spring.datasource.username: ${PSQL_DB_USERNAME}
+spring.datasource.password: ${PSQL_DB_PASSWORD}
+spring.datasource.driver-class-name: org.postgresql.Driver
+
+application.db-schema: ${PSQL_DB_DS}
+
+spring.mail.properties.mail.smtp.connecttimeout: 5000
+spring.mail.properties.mail.smtp.timeout: 3000
+spring.mail.properties.mail.smtp.writetimeout: 5000
+spring.mail.properties.mail.smtp.starttls.enable: true
+spring.mail.properties.mail.smpt.auth: true
+
+support.email: ${MAIL_SUPPORT_ADDRESS}
+spring.mail.host: ${MAIL_SMTP_HOST}
+spring.mail.port: ${MAIL_SMTP_PORT}
+spring.mail.username: ${MAIL_SMTP_USERNAME}
+spring.mail.password: ${MAIL_SMTP_PASSWORD}
+send.email: true
+
+services.ocm.uri.internal: http://gaia-x.demo.local:8081/demo
+services.portal.uri.external: http://gaia-x.portal.ext:8085
+
+springfox:
+  documentation:
+    swaggerUi:
+      baseUrl: /api/onboarding
+    openApi:
+      v3:
+        path: /api/onboarding/v3/api-docs
+    swagger:
+      v2:
+        path: /api/onboarding/v2/api-docs
+---
+spring.config.activate.on-profile: mesh
+server.port: 80
+server.shutdown: graceful
+spring.lifecycle.timeout-per-shutdown-phase: 10s
+management.endpoint.health.probes.enabled: true
+management.endpoints.web.exposure.include: "*"
+management.server.port: 4004
+
+services.ocm.uri.internal: http://demo/demo
+services.portal.uri.external: https://${PORTAL_URL}

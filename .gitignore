@@ -1,0 +1,14 @@
+*.iml
+./target
+target
+/target
+./.idea
+.idea
+/.idea
+deploy/output/app.jar
+deploy/docker/output/*
+
+# Eclipse
+.classpath
+.project
+.settings/
